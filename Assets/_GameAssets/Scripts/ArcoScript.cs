@@ -4,12 +4,12 @@ using UnityEngine;
 
 public class ArcoScript : MonoBehaviour {
     [SerializeField] Transform genPoint;
-    [SerializeField] GameObject prefabProyectil;
+    [SerializeField] GameObject prefabFlecha;
     [SerializeField] int force = 100;
 
     private void OnMouseDown() {
         GameObject proyectil = Instantiate(
-            prefabProyectil,
+            prefabFlecha,
             genPoint.transform.position,
             genPoint.transform.rotation);
         proyectil.GetComponent<Rigidbody>().AddRelativeForce(Vector3.forward * force);

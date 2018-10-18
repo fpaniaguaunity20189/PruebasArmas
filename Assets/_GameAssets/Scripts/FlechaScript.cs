@@ -6,6 +6,7 @@ public class FlechaScript : MonoBehaviour {
     Vector3 prevPos;
     Vector3 currentPos;
     Vector3 difPos;
+    bool primeraVez = true;
 
     private void FixedUpdate()
     {
@@ -17,10 +18,12 @@ public class FlechaScript : MonoBehaviour {
          * comportamiento parabólico.
          */
         currentPos = transform.position;
-        if (prevPos != null)
+        if (!primeraVez)
         {
             difPos = currentPos - prevPos;
             this.transform.forward = difPos.normalized;//La normalización de difPos no es necesaria
+        } else {
+            primeraVez = false;
         }
         prevPos = currentPos;
     }
