@@ -12,16 +12,20 @@ public class GranadaScript : MonoBehaviour {
 	}
 	
 	private void Explotar() {
-        Collider[] cosas = Physics.OverlapSphere(transform.position, radioExplosion);
-        foreach (var cosa in cosas) {
-            if (cosa.gameObject.CompareTag("Explosionables")) {
-                cosa.gameObject.GetComponent<Rigidbody>().AddExplosionForce(
+        //OverlapSphere "normal"
+        //Collider[] cosas = Physics.OverlapSphere(transform.position, radioExplosion);
+        //OverlapSphere "por capa"
+        int layerMask = 1 << LayerMask.NameToLayer("Explotables");
+        Collider[] cajas = Physics.OverlapSphere(transform.position, radioExplosion, layerMask);
+        foreach (var caja in cajas) {
+            //if (cosa.gameObject.CompareTag("Explosionables")) {
+                caja.gameObject.GetComponent<Rigidbody>().AddExplosionForce(
                     fuerzaExplosion,
                     this.transform.position,
                     radioExplosion,
                     alturaExplosion
                     );
-            }
+            //}
         }
     }
 }
